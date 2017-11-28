@@ -62,7 +62,7 @@ I went onto implement the generator for my model, put batching scheme in place, 
 
 I then went on to record a more proper data, but my computer's spec was not great and the simulator lagged so bad that I could not drive a full lap without going off the road. I tried my best however and saved around a half-lap of data.
 However, visualizing graph of train and validation results against epochs showed that while training error consistently decreased while validation error was bouncing up and down. So I just went and recorded more data.
-I recorded around 3 laps of data to provide enough data to avoid overfitting, and it seemed to work fine without the need of a drop-out layer.
+And this time, I set the simulator to "fastest" mode and I was able to drive the car precisely the way I wanted to. I recorded around 3 laps of data to provide enough data to avoid overfitting, and it seemed to work fine without the need of a drop-out layer.
 
 The final step was to run the simulator to see how well the car was driving around track one. 
 The car actually drove very smoothly and I was impressed by my model. The car almost always stayed dead center and even when I take over and drive the car nearly off the road or slightly off the road, the car managed to find itself right back to the center in smooth fashion.
