@@ -17,6 +17,11 @@ import sklearn
 from matplotlib import pyplot
 import matplotlib.pyplot as plt
 
+#save cropped image for report
+test_image = cv2.imread('../mydata/IMG/' + lines[0][0].split('\\')[-1])
+w,h,ch = test_image.shape
+cv2.imwrite('cropimg.png', test_image[65:h-25, 0:w])
+
 def generator(samples, batch_size=32):
     num_samples = len(samples) #using fit_generator, this line never gets run more than the 1st time it runs. Use of generator is indicated by yield line at the end of this while loop.
     while 1: # Loop forever so the generator never terminates
@@ -64,6 +69,10 @@ validation_generator = generator(validation_samples, batch_size=32)
 #import keras modules
 from keras.models import Sequential
 from keras.layers import Flatten, Dense, Lambda, Cropping2D, Convolution2D
+#from keras.regularizers import l2
+#import pydot_ng as pydot
+#from keras.utils.visualize_util import plot
+
 
 #define convolution network (closely resembles nvidia deep learning network for self driving car
 model = Sequential()
@@ -74,6 +83,8 @@ model.add(Convolution2D(36,5,5, subsample=(2,2), activation='relu'))
 model.add(Convolution2D(48,5,5, subsample=(2,2), activation='relu'))
 model.add(Convolution2D(64,3,3, activation='relu'))
 model.add(Convolution2D(64,3,3, activation='relu'))
+#model.add(Dropout(0.5)) #add a dropout layer to reduce overfitting
+#dropout/pooling/regularization not applied since my model was not overfitting and worked fine without it
 model.add(Flatten())
 model.add(Dense(100))
 model.add(Dense(50))
@@ -86,7 +97,10 @@ model.compile(loss='mse', optimizer='adam')
 history_object = model.fit_generator(train_generator, samples_per_epoch= len(train_samples), validation_data=validation_generator, nb_val_samples=len(validation_samples), nb_epoch=3)
 #model.fit(X_train, y_train, validation_split=0.2, shuffle=True, nb_epoch=7, verbose=1)
 
+model.summary()
 model.save('model.h5')
+
+#plot(model, to_file='model.png')
 
 # print the keys contained in the history object
 print(history_object.history.keys())
@@ -99,3 +113,4 @@ plt.ylabel('mean squared error loss')
 plt.xlabel('epoch')
 plt.legend(['training set', 'validation set'], loc='upper right')
 plt.show()
+plt.savefig('perfgraph.png', bbox_inches='tight')
