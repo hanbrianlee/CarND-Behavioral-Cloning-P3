@@ -16,16 +16,6 @@ The goals / steps of this project are the following:
 * Train and validate the model with a training and validation set
 * Test that the model successfully drives around track one without leaving the road
 
-[//]: # (Image References)
-
-[image1]: ./origimg.jpg "original image"
-[image2]: ./examples/placeholder.png "Grayscaling"
-[image3]: ./examples/placeholder_small.png "Recovery Image"
-[image4]: ./examples/placeholder_small.png "Recovery Image"
-[image5]: ./examples/placeholder_small.png "Recovery Image"
-[image6]: ./examples/placeholder_small.png "Normal Image"
-[image7]: ./examples/placeholder_small.png "Flipped Image"
-
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
 
@@ -131,7 +121,7 @@ epoch 2:2655/2581 [==============================] - 184s - loss: 0.0174 - val_l
 ```
 
 The resulting validation & training errors vs epochs is as follows and it shows the the model was trained just right as can be seen in validation and training errors converging and declining with every epoch:
- 
+ ![graph](trainvalgraph.png)
 
 There were additional implementations I was considering to make such as follows, but I found out that my model handled Track 1 so nicely that any further additions seemed like they won't improve it much. There's the good old engineering saying, if it ain't broken, don't fix it.
 1. Adding drop-out layer: perhaps this could even make the autonomous drive even more smooth

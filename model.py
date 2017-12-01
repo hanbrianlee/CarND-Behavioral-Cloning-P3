@@ -19,7 +19,7 @@ import matplotlib.pyplot as plt
 
 #save cropped image for report
 test_image = cv2.imread('../mydata/IMG/' + lines[0][0].split('\\')[-1])
-w,h,ch = test_image.shape
+h,w,ch = test_image.shape
 cv2.imwrite('cropimg.png', test_image[65:h-25, 0:w])
 
 def generator(samples, batch_size=32):
